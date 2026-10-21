@@ -1,0 +1,380 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Persona Study Deck</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky tab bar; Learn = topic rail + reading column; other modes centered single column */
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --ink:#18212b; --muted:#5a6673; --line:#d5dbe2;
+  --accent:#1f5f7a; --accent-soft:#dbe9ef; --gold:#a8741a; --good:#2f7a4a; --bad:#b3412f;
+  --display:"Young Serif",Georgia,serif; --body:"Atkinson Hyperlegible",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11161c; --surface:#19212a; --ink:#e4e9ee; --muted:#93a0ad; --line:#2c3743;
+  --accent:#6fb4d1; --accent-soft:#1d3440; --gold:#e0a94a; --good:#6cc28a; --bad:#ec8572; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161c; --surface:#19212a; --ink:#e4e9ee; --muted:#93a0ad; --line:#2c3743;
+  --accent:#6fb4d1; --accent-soft:#1d3440; --gold:#e0a94a; --good:#6cc28a; --bad:#ec8572; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding-block:12px}
+h1{font:400 1.35rem var(--display);margin:0}
+h1 span{color:var(--accent)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button,.btn{font:700 .9rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:6px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.progress{margin-left:auto;font:500 .8rem var(--mono);color:var(--muted);letter-spacing:.03em}
+main{padding-block:28px 64px}
+.eyebrow{font:500 .75rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
+h2{font:400 clamp(1.6rem,4vw,2.2rem)/1.2 var(--display);margin:.2em 0 .4em;text-wrap:balance}
+h3{font:700 1rem var(--body);margin:1.4em 0 .4em}
+
+/* Learn */
+.learn{display:grid;grid-template-columns:230px 1fr;gap:32px}
+.rail{display:flex;flex-direction:column;gap:2px;position:sticky;top:80px;align-self:start}
+.rail button{all:unset;cursor:pointer;padding:7px 10px;border-radius:6px;display:flex;justify-content:space-between;gap:8px;font-size:.95rem}
+.rail button:hover{background:var(--accent-soft)}
+.rail button[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.rail button:focus-visible{outline:3px solid var(--gold)}
+.rail .tick{color:var(--good)}
+.rail .grp{font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:14px 10px 4px}
+article{min-width:0;max-width:68ch}
+.school{display:inline-block;font:500 .75rem var(--mono);background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:4px}
+.summary{font-size:1.1rem;color:var(--ink)}
+ul.points{padding-left:1.1em;display:grid;gap:6px}
+dl.terms{display:grid;grid-template-columns:minmax(120px,auto) 1fr;gap:8px 18px;margin:0}
+dl.terms dt{font-weight:700;color:var(--accent)}
+dl.terms dd{margin:0}
+.tip{border-left:3px solid var(--gold);padding:8px 14px;background:var(--surface);margin:20px 0;font-size:.95rem}
+.tip b{color:var(--gold)}
+.done-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+.pyramid{display:flex;flex-direction:column;align-items:center;gap:3px;margin:16px 0}
+.pyramid div{padding:7px 10px;text-align:center;font-size:.9rem;color:var(--surface);background:var(--accent);border-radius:3px}
+.stages{display:grid;gap:6px;margin:12px 0}
+.stages div{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 12px}
+.stages .n{font:500 .8rem var(--mono);color:var(--gold)}
+.stages .age{font-size:.82rem;color:var(--muted)}
+
+/* Flashcards */
+.center{max-width:640px;margin:0 auto}
+.card{perspective:1200px;height:300px;cursor:pointer;margin:18px 0}
+.card-in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.card.flip .card-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:10px;overflow:auto}
+.face.back{transform:rotateY(180deg);border-color:var(--accent)}
+.face .q{font:400 1.35rem/1.35 var(--display);text-wrap:balance}
+.face .a{font-size:1.05rem}
+.hint{font-size:.85rem;color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select{font:inherit;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+
+/* Quiz */
+.opts{display:grid;gap:8px;margin:14px 0}
+.opts button{all:unset;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+.opts button:hover:not(:disabled){border-color:var(--accent)}
+.opts button:focus-visible{outline:3px solid var(--gold)}
+.opts button.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.opts button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--surface))}
+.why{font-size:.95rem;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.score{font:400 3rem var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* Cheat sheet */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.92rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .72rem var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+td:first-child{font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+@media (max-width:760px){
+  .learn{grid-template-columns:1fr}
+  .rail{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:6px}
+  .rail .grp{display:none}
+  .rail button{white-space:nowrap;border:1px solid var(--line)}
+  .progress{margin-left:0;width:100%}
+  .card{height:340px}
+}
+@media (prefers-reduced-motion:reduce){.card-in,.bar i{transition:none}}
+</style>
+
+<header><div class="wrap">
+  <h1>Persona <span>Study Deck</span></h1>
+  <nav role="tablist">
+    <button role="tab" data-mode="learn" aria-selected="true">Learn</button>
+    <button role="tab" data-mode="cards">Flashcards</button>
+    <button role="tab" data-mode="quiz">Quiz</button>
+    <button role="tab" data-mode="sheet">Cheat sheet</button>
+  </nav>
+  <div class="progress" id="progress"></div>
+</div></header>
+
+<main class="wrap">
+  <section id="learn" class="learn">
+    <div class="rail" id="rail"></div>
+    <article id="topic"></article>
+  </section>
+  <section id="cards" class="center" hidden></section>
+  <section id="quiz" class="center" hidden></section>
+  <section id="sheet" hidden></section>
+</main>
+
+<script>
+const T = [
+ {id:"intro",grp:"Basics",name:"What is personality?",school:"Definitions",
+  sum:"Personality is the distinct, fairly stable pattern of traits and characteristics that shape how we consistently think, feel and behave.",
+  pts:["The word comes from the Latin <b>persona</b>: the theatrical mask actors wore in Greek dramas.","Psychologists agree personality is more than the roles we play, but there is no single accepted definition. Each theorist's background shaped their theory.","<b>Traits</b> explain individual differences, consistency over time and stability across situations.","<b>Characteristics</b> are unique qualities like temperament, physique and intelligence."],
+  terms:[["APA definition","The enduring configuration of characteristics and behaviour that make up a person's unique adjustment to life: traits, interests, drives, values, self-concept, abilities, emotional patterns. Shaped by heredity, maturation, early training, identification with others, culture and critical experiences."],["Allport (1937)","\"The dynamic organization within the individual of those psychophysical systems that determine his unique adjustments to the environment.\""]],
+  tip:"Memorise Allport's 1937 definition word for word. It's the most-quoted line in exams."},
+ {id:"rogers",grp:"Theorists",name:"Carl Rogers",school:"Person-centred / Humanistic",
+  sum:"Personality is understood from the person's own subjective experience. Everyone has a built-in drive to grow.",
+  pts:["Every person has an <b>actualizing tendency</b> (Rogers, 1951) that pushes them to develop their abilities and reach full potential.","Key relationship: the <b>perceived self</b> vs the <b>ideal self</b>.","<b>Unconditional positive regard</b> (accepting someone without conditions) supports healthy development.","<b>Conditions of worth</b> cause <b>incongruence</b> between self-concept and experience, leading to psychological difficulties.","Therapy relies on empathy, genuineness and unconditional positive regard. Widely used in counselling."],
+  terms:[["Fully functioning person","Open to experience, trusts own feelings, lives with freedom and spontaneity."],["Incongruence","Mismatch between self-concept and actual experience."]],
+  tip:"Rogers = <b>self</b>. Self-concept, ideal self, congruence. If a question mentions \"conditions of worth\", it's Rogers."},
+ {id:"maslow",grp:"Theorists",name:"Abraham Maslow",school:"Humanistic",
+  sum:"Motivation runs up a hierarchy of needs, from survival to self-actualization. An optimistic view of human nature.",
+  pts:["American psychologist (1908–1970), a major figure in humanistic psychology.","Lower needs generally need some satisfaction before higher ones become dominant.","Studied self-actualizing people: self-accepting, creative, independent, realistic in perception."],
+  pyramid:["Self-actualization","Esteem","Belongingness & love","Safety","Physiological"],
+  terms:[["Physiological","Food, water, sleep, survival basics."],["Safety","Security, stability, protection."],["Belongingness & love","Affection, friendship, acceptance."],["Esteem","Self-respect, confidence, achievement, recognition."],["Self-actualization","Realizing your abilities and full potential."]],
+  tip:"Order from bottom: <b>P-S-B-E-S</b> → \"Please Stop Being Extra, Seriously.\""},
+ {id:"jung",grp:"Theorists",name:"Carl Jung",school:"Analytical Psychology",
+  sum:"Personality combines conscious and unconscious processes. Growth means integrating them: individuation.",
+  pts:["<b>Libido</b> = general life energy, not purely sexual (his break from Freud).","Psyche has three levels: <b>conscious</b> (ego), <b>personal unconscious</b> (forgotten or repressed experiences), <b>collective unconscious</b> (inherited universal patterns called archetypes).","Two attitudes: <b>introversion</b> (inner world) and <b>extraversion</b> (outer world).","Four functions: <b>thinking, feeling, sensation, intuition</b>.","Development continues through life. Early life builds the ego and social roles; middle age turns toward deeper self-understanding."],
+  terms:[["Persona","The social face shown to others."],["Shadow","Hidden aspects of personality."],["Anima / Animus","Feminine / masculine aspects."],["Self","Psychological wholeness."],["Complex","A cluster of emotionally linked thoughts, memories and feelings."],["Individuation","Integrating conscious and unconscious to reach wholeness and self-realization."]],
+  tip:"Jung = <b>archetypes + collective unconscious</b>. \"Persona\" is both the root of the word personality and a Jungian archetype."},
+ {id:"adler",grp:"Theorists",name:"Alfred Adler",school:"Individual Psychology",
+  sum:"Personality is driven by inferiority feelings, future goals and social relationships.",
+  pts:["Inferiority feelings are normal and motivate self-improvement. If they can't be overcome, an <b>inferiority complex</b> forms (causes: physical weakness, pampering, neglect).","Overcompensation can create a <b>superiority complex</b>: exaggerated self-importance.","<b>Striving for superiority</b>: the drive toward perfection and growth.","<b>Creative self</b>: people actively shape their personality, not just heredity and environment.","Four lifestyles: <b>dominant, getting, avoiding, socially useful</b>.","Methods: birth-order analysis, early recollections, dream analysis.","Criticism: hard to verify scientifically; birth-order research is inconsistent."],
+  terms:[["Fictional finalism","Imagined future goals guide present behaviour."],["Style of life","A person's unique pattern of handling life's challenges."],["Social interest","Ability to cooperate and contribute to society; promotes empathy and wellbeing."],["Birth order","First-born: responsibility and authority. Second: competitive. Youngest: ambitious or dependent. Only child: more adult attention."]],
+  tip:"Adler = <b>inferiority, birth order, social interest</b>. Fictional finalism means the future pulls you, not the past."},
+ {id:"allport",grp:"Theorists",name:"Gordon Allport",school:"Trait theory",
+  sum:"Adults aren't prisoners of childhood. Focus on uniqueness, conscious motives and the present.",
+  pts:["Defined personality as the dynamic organization of psychophysical systems that determine characteristic behaviour and thought.","<b>Individual traits</b> are unique to a person; <b>common traits</b> are shared within a culture.","Focused on <b>personal dispositions</b>, split into cardinal, central and secondary.","Healthy adult: emotionally secure, compassionate, self-accepting, warm relationships, realistic perception."],
+  terms:[["Cardinal traits","Pervasive; shape an entire life."],["Central traits","Core characteristics behind most behaviour."],["Secondary traits","Less consistent preferences or attitudes."],["Functional autonomy","Adult motives become independent of the childhood drives they grew from."]],
+  tip:"Allport traits by strength: <b>Cardinal > Central > Secondary</b>. Functional autonomy is his signature motivation concept."},
+ {id:"cattell",grp:"Theorists",name:"Raymond Cattell",school:"Trait theory (factor analytic)",
+  sum:"Personality is what lets you predict what someone will do in a given situation. Built from factor analysis.",
+  pts:["Used <b>factor analysis</b> to reduce huge lists of behaviours to basic underlying units.","<b>Surface traits</b>: visible clusters of correlated behaviour. <b>Source traits</b>: stable, fundamental factors.","Source traits come in two origins: <b>constitutional</b> (biological/genetic) and <b>environmental-mold</b> (social/physical).","Functional groups: <b>ability</b> (efficiency), <b>temperament</b> (emotional tone and style), <b>dynamic</b> (motivation: innate ergs and learned sentiments).","Identified <b>16 source traits</b> → the <b>16PF Questionnaire</b>."],
+  terms:[["L-data","Life records."],["Q-data","Questionnaires."],["T-data","Objective laboratory tests."]],
+  tip:"Cattell's data types = <b>L, Q, T</b> (Life, Questionnaire, Test). 16 factors → 16PF."},
+ {id:"eysenck",grp:"Theorists",name:"Hans Eysenck",school:"Biological trait theory",
+  sum:"A dimensional, hierarchical model rooted in biology and genetics.",
+  pts:["Personality is relatively stable and largely biological and genetic.","Hierarchy: specific acts → habits → traits → broad superfactors.","Started with two independent dimensions, then added a third for cruelty, hostility and insensitivity.","Differences rooted in heredity, central nervous system arousal and hormones, not just upbringing."],
+  terms:[["Extraversion–Introversion","Sociable and lively ↔ quiet and passive."],["Neuroticism–Stability","Anxious and moody ↔ calm."],["Psychoticism–Control","Added later: cruelty, hostility, insensitivity."]],
+  tip:"Eysenck = <b>PEN</b> model: Psychoticism, Extraversion, Neuroticism."},
+ {id:"erikson",grp:"Theorists",name:"Erik Erikson",school:"Psychosocial theory",
+  sum:"Personality develops across the whole lifespan through eight stages, each with a crisis to resolve.",
+  pts:["Development comes from biological factors, psychological needs and social experiences interacting.","Resolving each crisis builds psychological strength; unresolved crises create later difficulties.","Social relationships and culture shape identity throughout life."],
+  stages:[["Trust vs Mistrust","Infancy"],["Autonomy vs Shame & Doubt","Early childhood"],["Initiative vs Guilt","Preschool"],["Industry vs Inferiority","School age"],["Identity vs Role Confusion","Adolescence"],["Intimacy vs Isolation","Young adulthood"],["Generativity vs Stagnation","Middle adulthood"],["Ego Integrity vs Despair","Late adulthood"]],
+  tip:"Order trick: <b>T-A-I-I-I-I-G-E</b>. Trust, Autonomy, then four I's (Initiative, Industry, Identity, Intimacy), then Generativity, Ego integrity."},
+ {id:"factors",grp:"Factors",name:"Factors influencing personality",school:"Seven factors",
+  sum:"Personality is shaped by genes, environment, learning, parents, development, conscious and unconscious processes.",
+  terms:[["Genetic","Eysenck's P-E-N; McCrae & Costa's <b>Big Five</b> (neuroticism, extraversion, openness, agreeableness, conscientiousness); Buss & Plomin's temperaments (emotionality, activity, sociability); Zuckerman's sensation seeking. Twin studies support it. Genes give predispositions, not fixed outcomes."],
+   ["Environmental","Adler: birth order and family. Horney: culture and gender. Allport: genes are raw material, environment shapes it. Erikson: social and historical forces. Also marriage, divorce, jobs, stress, culture, neighbourhood."],
+   ["Learning","Skinner: reinforcement and conditioning. Bandura: observational learning, vicarious reinforcement, <b>self-efficacy</b>. Rotter: <b>locus of control</b>. Seligman: <b>learned helplessness</b> and optimism. A sense of control → better coping, self-esteem, less anxiety."],
+   ["Parental","Freud first stressed it. Adler: rejection and neglect. Horney: warmth → security. Erikson: first-year bond → basic trust. Maslow: physiological and safety needs. Rogers: unconditional positive regard. <b>Authoritative</b> parenting gives the best outcomes. Children also influence parents, and parenting is partly heritable."],
+   ["Developmental","Freud: fixed by age 5–6. Cattell, Allport, Erikson: can change later. Big Five traits fairly stable after 30. With age people grow more conscientious, agreeable and emotionally stable; neuroticism, extraversion and openness dip slightly."],
+   ["Consciousness","Most theorists agree conscious processes matter. Kelly: personal constructs to predict events. Bandura: observing others and anticipating consequences."],
+   ["Unconscious","Freud: store of repressed wishes. Modern cognitive psychology confirms much processing is outside awareness (subliminal research), but this \"cognitive unconscious\" is more rational than Freud's."]],
+  tip:"Seven factors: <b>Genetic, Environmental, Learning, Parental, Developmental, Conscious, Unconscious</b>."}
+];
+
+const CARDS = [
+ ["Origin of the word \"personality\"","Latin <b>persona</b>: a theatrical mask used by actors in Greek dramas.","intro"],
+ ["Allport's 1937 definition","The dynamic organization within the individual of those psychophysical systems that determine his unique adjustments to the environment.","intro"],
+ ["What do traits contribute to?","Individual differences, behavioural consistency over time, and stability across situations.","intro"],
+ ["Actualizing tendency","Rogers: the innate drive to develop abilities and reach full potential.","rogers"],
+ ["Unconditional positive regard","Rogers: accepting and valuing someone without conditions. Key to healthy development.","rogers"],
+ ["Conditions of worth","Rogers: conditions attached to acceptance. They cause incongruence between self-concept and experience.","rogers"],
+ ["Fully functioning person","Rogers: open to experience, trusts own feelings, lives freely and spontaneously.","rogers"],
+ ["Maslow's 5 needs (bottom → top)","Physiological → Safety → Belongingness & love → Esteem → Self-actualization.","maslow"],
+ ["Traits of self-actualizers","Self-acceptance, creativity, independence, realistic perception.","maslow"],
+ ["Jung's view of libido","General life energy, not purely sexual.","jung"],
+ ["Collective unconscious","Jung: inherited universal patterns (archetypes) shared by all humans.","jung"],
+ ["Personal unconscious","Jung: forgotten or repressed experiences.","jung"],
+ ["Jung's four functions","Thinking, feeling, sensation, intuition.","jung"],
+ ["Shadow","Jung: the hidden aspects of personality.","jung"],
+ ["Individuation","Jung: integrating conscious and unconscious to achieve wholeness and self-realization.","jung"],
+ ["Complex (Jung)","A group of emotionally connected thoughts, memories and feelings.","jung"],
+ ["Inferiority complex","Adler: when normal inferiority feelings can't be overcome. Linked to physical weakness, pampering, neglect.","adler"],
+ ["Fictional finalism","Adler: imagined future goals guide present behaviour.","adler"],
+ ["Adler's four lifestyles","Dominant, getting, avoiding, socially useful.","adler"],
+ ["Social interest","Adler: ability to cooperate with others and contribute to society.","adler"],
+ ["Creative self","Adler: people actively shape their own personality.","adler"],
+ ["Functional autonomy","Allport: adult motives become independent of the childhood drives they came from.","allport"],
+ ["Cardinal vs central vs secondary traits","Allport: pervasive life-shaping / core everyday / inconsistent preferences.","allport"],
+ ["Common vs individual traits","Allport: shared within a culture vs unique to a person.","allport"],
+ ["Cattell's definition of personality","That which permits a prediction of what a person will do in a given situation.","cattell"],
+ ["Surface vs source traits","Cattell: visible clusters of behaviour vs stable fundamental factors.","cattell"],
+ ["L-data, Q-data, T-data","Cattell: life records, questionnaires, objective lab tests.","cattell"],
+ ["Ergs and sentiments","Cattell's dynamic traits: innate ergs and learned sentiments.","cattell"],
+ ["16PF","Cattell's questionnaire measuring his 16 primary source traits.","cattell"],
+ ["Eysenck's three dimensions","Extraversion–introversion, neuroticism–stability, psychoticism–control.","eysenck"],
+ ["Why Eysenck added psychoticism","To account for cruelty, hostility and insensitivity.","eysenck"],
+ ["Erikson stage: adolescence","Identity vs Role Confusion.","erikson"],
+ ["Erikson stage: middle adulthood","Generativity vs Stagnation.","erikson"],
+ ["Erikson stage: school age","Industry vs Inferiority.","erikson"],
+ ["Erikson stage: late adulthood","Ego Integrity vs Despair.","erikson"],
+ ["The Big Five (McCrae & Costa)","Neuroticism, extraversion, openness, agreeableness, conscientiousness.","factors"],
+ ["Buss & Plomin's temperaments","Emotionality, activity, sociability.","factors"],
+ ["Locus of control","Rotter's concept, under the learning factor.","factors"],
+ ["Learned helplessness","Seligman's concept, under the learning factor.","factors"],
+ ["Best-supported parenting style","Authoritative: more competence, confidence, school and social adjustment.","factors"],
+ ["When are Big Five traits most stable?","After about age 30, though never absolutely.","factors"],
+ ["Freud on development","Personality is essentially fixed by age 5 or 6.","factors"]
+];
+
+const QUIZ = [
+ ["\"Persona\" originally meant…",["A theatrical mask","The soul","A social role","A family name"],0,"Latin persona: the mask actors wore in Greek dramas."],
+ ["Who defined personality as \"the dynamic organization within the individual of those psychophysical systems…\" (1937)?",["Cattell","Allport","Rogers","Eysenck"],1,"Allport, 1937."],
+ ["Conditions of worth lead to…",["Individuation","Incongruence","Functional autonomy","Fictional finalism"],1,"Rogers: conditions of worth create incongruence between self-concept and experience."],
+ ["Which need sits directly below self-actualization in Maslow's hierarchy?",["Safety","Belongingness & love","Esteem","Physiological"],2,"Order: physiological, safety, belongingness, esteem, self-actualization."],
+ ["The collective unconscious contains…",["Repressed personal memories","Archetypes","Ergs","Cardinal traits"],1,"Jung: inherited universal patterns called archetypes."],
+ ["Which is NOT one of Jung's four functions?",["Thinking","Intuition","Sensation","Perception"],3,"The four are thinking, feeling, sensation, intuition."],
+ ["The social face we present to others is the…",["Shadow","Self","Persona","Anima"],2,"Persona = social mask. Shadow = hidden aspects."],
+ ["\"Imagined future goals guide present behaviour\" describes…",["Fictional finalism","Functional autonomy","Actualizing tendency","Style of life"],0,"Adler's fictional finalism."],
+ ["Which is one of Adler's four lifestyles?",["Avoiding","Introverted","Generative","Congruent"],0,"Dominant, getting, avoiding, socially useful."],
+ ["According to Adler, second-born children tend to be…",["Responsible","Competitive","Dependent","Authoritative"],1,"First-born: responsibility. Second-born: competitive. Youngest: ambitious or dependent."],
+ ["Functional autonomy belongs to…",["Adler","Cattell","Allport","Jung"],2,"Allport: adult motives become independent of childhood drives."],
+ ["A trait so pervasive it shapes a person's entire life is a…",["Central trait","Source trait","Cardinal trait","Surface trait"],2,"Allport's cardinal trait."],
+ ["Cattell's T-data comes from…",["Life records","Questionnaires","Objective lab tests","Therapy transcripts"],2,"L = life records, Q = questionnaires, T = tests."],
+ ["Source traits rooted in biology and genetics are called…",["Environmental-mold traits","Constitutional traits","Dynamic traits","Ability traits"],1,"Constitutional traits; environmental-mold traits come from social and physical influences."],
+ ["Cattell's main statistical method was…",["Regression","Factor analysis","Meta-analysis","Case study"],1,"He used factor analysis to reduce behaviours to underlying units."],
+ ["Eysenck added psychoticism to explain…",["Sociability","Anxiety","Cruelty and hostility","Creativity"],2,"Psychoticism–control covers cruelty, hostility, insensitivity."],
+ ["Eysenck believed personality differences mainly come from…",["Parenting style","Biology and heredity","Birth order","Culture"],1,"Heredity, CNS arousal and hormones."],
+ ["Identity vs Role Confusion happens during…",["School age","Adolescence","Young adulthood","Preschool"],1,"Erikson's fifth stage, adolescence."],
+ ["Which Erikson stage comes right after Initiative vs Guilt?",["Industry vs Inferiority","Autonomy vs Shame","Identity vs Role Confusion","Trust vs Mistrust"],0,"Trust → Autonomy → Initiative → Industry → Identity…"],
+ ["Who proposed the Big Five traits?",["Buss & Plomin","McCrae & Costa","Eysenck","Zuckerman"],1,"McCrae & Costa."],
+ ["Locus of control is associated with…",["Rotter","Seligman","Skinner","Kelly"],0,"Rotter. Seligman = learned helplessness."],
+ ["Which parenting style is linked to the best outcomes?",["Permissive","Authoritarian","Authoritative","Indifferent"],2,"Authoritative parenting: more competence, confidence and adjustment."],
+ ["Who held that personality is essentially fixed by age 5 or 6?",["Erikson","Allport","Freud","Jung"],2,"Freud. Cattell, Allport and Erikson disagreed."],
+ ["With age, people tend to become MORE…",["Neurotic","Open","Conscientious","Extraverted"],2,"More conscientious, agreeable, emotionally stable; neuroticism, extraversion, openness dip."],
+ ["\"Personal constructs\" used to predict events come from…",["Bandura","Kelly","Horney","Maslow"],1,"Kelly, under the consciousness factor."]
+];
+
+const $ = s => document.querySelector(s);
+const store = {get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+let done = new Set(store.get("pd-done",[]));
+let cur = store.get("pd-topic","intro");
+
+function progress(){ $("#progress").textContent = `${done.size}/${T.length} topics done`; }
+
+function rail(){
+  let g="", h="";
+  T.forEach(t=>{
+    if(t.grp!==g){ g=t.grp; h+=`<div class="grp">${g}</div>`; }
+    h+=`<button data-id="${t.id}" aria-current="${t.id===cur}"><span>${t.name}</span>${done.has(t.id)?'<span class="tick">✓</span>':''}</button>`;
+  });
+  $("#rail").innerHTML=h;
+}
+
+function topic(){
+  const i=T.findIndex(t=>t.id===cur), t=T[i];
+  let h=`<div class="eyebrow">${t.grp}</div><h2>${t.name}</h2><span class="school">${t.school}</span><p class="summary">${t.sum}</p>`;
+  if(t.pts) h+=`<h3>Key points</h3><ul class="points">${t.pts.map(p=>`<li>${p}</li>`).join("")}</ul>`;
+  if(t.pyramid) h+=`<h3>Hierarchy of needs</h3><div class="pyramid">${t.pyramid.map((p,k)=>`<div style="width:${44+k*14}%;opacity:${.55+k*.11}">${p}</div>`).join("")}</div>`;
+  if(t.stages) h+=`<h3>The eight stages</h3><div class="stages">${t.stages.map((s,k)=>`<div><span class="n">${k+1}</span><span>${s[0]}</span><span class="age">${s[1]}</span></div>`).join("")}</div>`;
+  if(t.terms) h+=`<h3>${t.id==="factors"?"The seven factors":"Key terms"}</h3><dl class="terms">${t.terms.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
+  if(t.tip) h+=`<div class="tip"><b>Exam tip.</b> ${t.tip}</div>`;
+  h+=`<div class="done-row"><button class="btn ${done.has(t.id)?'':'primary'}" id="mark">${done.has(t.id)?'Marked as done ✓':'Mark as done'}</button>`;
+  h+=`<button class="btn" id="drill">Flashcards for this topic</button>`;
+  if(T[i+1]) h+=`<button class="btn" id="next">Next: ${T[i+1].name} →</button>`;
+  h+=`</div>`;
+  $("#topic").innerHTML=h;
+  $("#mark").onclick=()=>{ done.has(cur)?done.delete(cur):done.add(cur); store.set("pd-done",[...done]); rail(); topic(); progress(); };
+  $("#drill").onclick=()=>{ deckFilter=cur; buildDeck(); mode("cards"); };
+  if(T[i+1]) $("#next").onclick=()=>{ go(T[i+1].id); scrollTo(0,0); };
+}
+function go(id){ cur=id; store.set("pd-topic",id); rail(); topic(); }
+$("#rail").onclick=e=>{ const b=e.target.closest("button"); if(b) go(b.dataset.id); };
+
+/* Flashcards */
+let deckFilter="all", deck=[], ci=0, again=[];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+function buildDeck(list){ deck = list || shuffle(CARDS.filter(c=>deckFilter==="all"||c[2]===deckFilter)); ci=0; again=[]; drawCard(); }
+function drawCard(){
+  const opts=`<option value="all">All topics (${CARDS.length})</option>`+T.map(t=>`<option value="${t.id}" ${deckFilter===t.id?"selected":""}>${t.name}</option>`).join("");
+  let h=`<div class="eyebrow">Flashcards</div><h2>Recall, then flip</h2><div class="row"><select id="deckSel" aria-label="Choose topic">${opts}</select><button class="btn" id="shuf">Shuffle</button></div>`;
+  if(ci>=deck.length){
+    h+=`<div class="face" style="position:static;margin:18px 0;min-height:200px"><div class="q">Deck finished</div><div class="a">${deck.length-again.length} of ${deck.length} known.${again.length?` ${again.length} to review.`:" Clean sweep."}</div></div><div class="row">${again.length?'<button class="btn primary" id="redo">Review the ones I missed</button>':''}<button class="btn" id="restart">Start over</button></div>`;
+  } else {
+    const c=deck[ci], tn=T.find(t=>t.id===c[2]).name;
+    h+=`<div class="bar" style="margin-top:18px"><i style="width:${ci/deck.length*100}%"></i></div>
+    <div class="card" id="card" tabindex="0" role="button" aria-label="Flip card"><div class="card-in">
+      <div class="face"><span class="eyebrow">${tn} · ${ci+1}/${deck.length}</span><div class="q">${c[0]}</div><span class="hint">Tap or press Space to flip</span></div>
+      <div class="face back"><span class="eyebrow">Answer</span><div class="a">${c[1]}</div></div>
+    </div></div>
+    <div class="row"><button class="btn" id="miss">Still learning</button><button class="btn primary" id="got">Got it</button></div>`;
+  }
+  $("#cards").innerHTML=h;
+  $("#deckSel").onchange=e=>{deckFilter=e.target.value; buildDeck();};
+  $("#shuf").onclick=()=>buildDeck();
+  if(ci>=deck.length){ $("#restart").onclick=()=>buildDeck(); if(again.length) $("#redo").onclick=()=>buildDeck(shuffle([...again])); return; }
+  const card=$("#card"); card.onclick=()=>card.classList.toggle("flip");
+  $("#got").onclick=()=>{ci++;drawCard()};
+  $("#miss").onclick=()=>{again.push(deck[ci]);ci++;drawCard()};
+}
+
+/* Quiz */
+let qs=[], qi=0, right=0, answered=false;
+function startQuiz(){ qs=shuffle(QUIZ.map(q=>{const o=q[1].map((t,k)=>({t,ok:k===q[2]}));return{q:q[0],o:shuffle(o),why:q[3]}})); qi=0; right=0; drawQ(); }
+function drawQ(){
+  if(qi>=qs.length){
+    const pct=Math.round(right/qs.length*100), best=store.get("pd-best",0);
+    if(pct>best) store.set("pd-best",pct);
+    $("#quiz").innerHTML=`<div class="eyebrow">Result</div><div class="score">${right}/${qs.length}</div><p>${pct>=80?"Exam ready on this unit.":pct>=50?"Decent. Re-read the topics you missed, then retake.":"Go back to Learn mode and work through the topics first."} Best so far: ${Math.max(pct,best)}%.</p><button class="btn primary" id="again">Take a new quiz</button>`;
+    $("#again").onclick=startQuiz; return;
+  }
+  const q=qs[qi]; answered=false;
+  $("#quiz").innerHTML=`<div class="eyebrow">Question ${qi+1} of ${qs.length} · Score ${right}</div><div class="bar" style="margin:10px 0 4px"><i style="width:${qi/qs.length*100}%"></i></div>
+  <h2 style="font-size:1.45rem">${q.q}</h2><div class="opts">${q.o.map((o,k)=>`<button data-k="${k}">${o.t}</button>`).join("")}</div><p class="why" id="why"></p><div class="row" id="nx"></div>`;
+  $("#quiz .opts").onclick=e=>{
+    const b=e.target.closest("button"); if(!b||answered) return; answered=true;
+    const pick=q.o[+b.dataset.k];
+    [...$("#quiz .opts").children].forEach((x,k)=>{ if(q.o[k].ok) x.classList.add("right"); x.disabled=true; });
+    if(pick.ok) right++; else b.classList.add("wrong");
+    $("#why").textContent=(pick.ok?"Correct. ":"Not quite. ")+q.why;
+    $("#nx").innerHTML=`<button class="btn primary" id="nextq">${qi+1<qs.length?"Next question":"See result"}</button>`;
+    $("#nextq").onclick=()=>{qi++;drawQ()}; $("#nextq").focus();
+  };
+}
+
+/* Cheat sheet */
+function sheet(){
+  const rows=[["Rogers","Person-centred","Actualizing tendency, self-concept, ideal self, unconditional positive regard, conditions of worth, incongruence, fully functioning person"],
+  ["Maslow","Humanistic","Hierarchy: physiological, safety, belongingness, esteem, self-actualization; self-actualizers"],
+  ["Jung","Analytical","Libido as life energy, personal & collective unconscious, archetypes (persona, shadow, anima/animus, Self), complex, introversion/extraversion, 4 functions, individuation"],
+  ["Adler","Individual","Inferiority/superiority complex, striving for superiority, fictional finalism, style of life, creative self, 4 lifestyles, social interest, birth order"],
+  ["Allport","Trait","Individual vs common traits, cardinal/central/secondary dispositions, functional autonomy, healthy adult"],
+  ["Cattell","Factor-analytic trait","Surface vs source, constitutional vs environmental-mold, ability/temperament/dynamic (ergs, sentiments), L/Q/T data, 16PF"],
+  ["Eysenck","Biological trait","Hierarchy of acts to superfactors; Extraversion, Neuroticism, Psychoticism (PEN); biology & heredity"],
+  ["Erikson","Psychosocial","8 lifespan stages, each a crisis: Trust → Autonomy → Initiative → Industry → Identity → Intimacy → Generativity → Ego integrity"]];
+  $("#sheet").innerHTML=`<div class="eyebrow">Cheat sheet</div><h2>All theorists at a glance</h2><div class="tbl"><table><thead><tr><th>Theorist</th><th>Approach</th><th>Key concepts</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
+  <h3>References</h3><ul class="points" style="color:var(--muted);font-size:.9rem"><li>Feist, J., & Feist, G. J. (2009). <i>Theories of personality</i> (7th ed.). McGraw-Hill.</li><li>Hurlock, E. B. (1976). <i>Personality development</i>. Tata McGraw-Hill.</li><li>Schultz, D. P., & Schultz, S. E. (2015). <i>Theories of personality</i> (11th ed.). Cengage.</li></ul>`;
+}
+
+/* Modes */
+function mode(m){
+  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected",b.dataset.mode===m));
+  ["learn","cards","quiz","sheet"].forEach(id=>$("#"+id).hidden=id!==m);
+}
+document.querySelector("nav").onclick=e=>{const b=e.target.closest("button"); if(!b) return; if(b.dataset.mode==="cards"&&!deck.length) buildDeck(); mode(b.dataset.mode);};
+document.addEventListener("keydown",e=>{
+  if($("#cards").hidden) return;
+  const card=$("#card"); if(!card) return;
+  if(e.code==="Space"){e.preventDefault();card.classList.toggle("flip")}
+  if(e.key==="ArrowRight"&&$("#got")) $("#got").click();
+  if(e.key==="ArrowLeft"&&$("#miss")) $("#miss").click();
+});
+
+rail(); topic(); progress(); buildDeck(); startQuiz(); sheet();
+</script>
+
+</body></html>
